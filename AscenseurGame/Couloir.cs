@@ -50,8 +50,13 @@ namespace AscenseurGame
                     _perso.Position.Y = Utils.ETAGE_4 + diffPerso;
                     break;
             }
+
+            if (Clients.Count == 0)
+                _perso.Move(Keys.Left, 200, 2500);
+            else
+                _perso.Move(Keys.Left, 40 + Clients[Clients.Count - 1].TweenEnd.X, 2500);
             Clients.Add(_perso);
-            _perso.Move(Keys.Left, 200, 5000);
+            
         }
 
         public void Draw(SpriteBatch batch)

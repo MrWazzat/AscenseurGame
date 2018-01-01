@@ -17,6 +17,11 @@ namespace AscenseurGame
         public Tween Tween;
         public bool InMove;
 
+        public Vector2 TweenEnd
+        {
+            get { return Tween.begin + Tween.change; }
+        }
+
         public Sprite(Texture2D texture, Vector2 position)
         {
             Texture = texture;
