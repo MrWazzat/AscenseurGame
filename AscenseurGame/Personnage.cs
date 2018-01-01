@@ -16,7 +16,7 @@ namespace AscenseurGame
 
         public Personnage(Vector2 _position) : base(Assets.Personnage, _position)
         {
-            //EtageVoulu = _etage;
+            Texture = Main.Rand.Next(5) == 1 ? Assets.Patron : Assets.Personnage;
             Console.WriteLine("Un de plus !");
         }
 

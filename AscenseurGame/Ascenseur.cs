@@ -34,7 +34,7 @@ namespace AscenseurGame
 
         public void AddClient(Personnage _perso)
         {
-            _perso.Position = new Vector2(Position.X + Main.Rand.Next(0, Texture.Width - 38), Position.Y + (Texture.Height - 71));
+            _perso.Position = new Vector2(Position.X + Main.Rand.Next(0, Texture.Width - _perso.Texture.Width), Position.Y + (Texture.Height - _perso.Texture.Height));
             _perso.Effect = (Main.Rand.Next(2) == 1) ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Clients.Add(_perso);
         }
@@ -43,7 +43,7 @@ namespace AscenseurGame
         {
             base.Draw(batch);
             foreach (Personnage cl in Clients)
-                cl.Draw(batch, Position.Y + (Texture.Height - 71));
+                cl.Draw(batch, Position.Y + (Texture.Height - cl.Texture.Height));
         }
     }
 }

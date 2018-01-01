@@ -23,7 +23,7 @@ namespace AscenseurGame
             Ascenseur = Main.Content.Load<Texture2D>("ascenceur");
             Personnage = Main.Content.Load<Texture2D>("personnage");
             Couloir = Main.Content.Load<Texture2D>("Couloir");
-            //Patron = Main.Content.Load<Texture2D>("patron");
+            Patron = Main.Content.Load<Texture2D>("patron");
             //FONT
             Pixel = Main.Content.Load<SpriteFont>("pixel");
             //SOUND
