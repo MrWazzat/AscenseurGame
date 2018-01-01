@@ -10,6 +10,15 @@ namespace AscenseurGame
 {
     class Utils
     {
+        //ETAGE ASCENSEUR
+        public const float ETAGE_1 = 48;
+        public const float ETAGE_2 = 176;
+        public const float ETAGE_3 = 320;
+        public const float ETAGE_4 = 480;
+
+        public const float POSITION_X_BUTTON = 200;
+
+
         //DESSIN DE HITBOX
         public static Texture2D CreateTexture(int w, int h, Color col)
         {

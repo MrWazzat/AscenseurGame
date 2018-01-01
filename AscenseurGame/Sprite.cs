@@ -20,7 +20,7 @@ namespace AscenseurGame
         {
             Texture = texture;
             Position = position;
-            Tween = new Tween(0, Position, new Vector2(0, 0), 1000);
+            Tween = new Tween(0, Position, new Vector2(0, 0), 0);
         }
 
         public virtual void Update(float time)
@@ -32,10 +32,10 @@ namespace AscenseurGame
                 Position.Y = Ease.Easing(Tween.time, Tween.begin.Y, Tween.change.Y, Tween.duration, EaseFunction.EaseInOutQuint);
             }
 
-            if (Input.Left(true))
-            {
-                Move(Input.MousePos, 1000);
-            }
+            //if (Input.Left(true))
+            //{
+            //    Move(Input.MousePos, 1000);
+            //}
         }
 
         public void Move(Vector2 _new, float _duration)
@@ -46,6 +46,18 @@ namespace AscenseurGame
 
             Tween.begin = Position;
             Tween.change = Change;
+            Tween.time = 0;
+            Tween.duration = _duration;
+        }
+
+        public void Move(float y, float _duration)
+        {
+            //Vector2 Change = new Vector2(0, y - Position.Y);
+            //Vector2 Change = new Vector2(_new.X - Position.X, Position.Y);
+            //Vector2 Change = new Vector2(_new.X - Position.X, _new.Y - Position.Y);
+
+            Tween.begin = Position;
+            Tween.change.Y = y - Position.Y;
             Tween.time = 0;
             Tween.duration = _duration;
         }
