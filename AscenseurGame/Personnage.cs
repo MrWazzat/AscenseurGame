@@ -11,19 +11,22 @@ namespace AscenseurGame
     public class Personnage : Sprite
     {
         public SpriteEffects Effect;
+        public int EtageVoulu;
+        public int EtageActuel;
+
         public Personnage(Vector2 _position) : base(Assets.Personnage, _position)
         {
-
+            //EtageVoulu = _etage;
+            Console.WriteLine("Un de plus !");
         }
 
-        public void Update()
+        public override void Update(float time)
         {
-
+            base.Update(time);
         }
 
         public void Draw(SpriteBatch batch, float y)
         {
-            //base.Draw(batch);
             batch.Draw(Texture, new Vector2(Position.X,y), null, Color.White, 0, Vector2.Zero, 1f, Effect, 1f);
         }
     }

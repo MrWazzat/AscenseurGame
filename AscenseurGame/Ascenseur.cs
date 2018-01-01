@@ -12,9 +12,15 @@ namespace AscenseurGame
     {
         public List<Personnage> Clients;
 
+        public float Vitesse;
+
+
         public Ascenseur(Vector2 _position) : base(Assets.Ascenseur, _position)
         {
             Clients = new List<Personnage>();
+            Vitesse = 2500;
+            Tween.function = EaseFunction.EaseInOutQuint;
+            InMove = false;
         }
 
         public override void Update(float time)

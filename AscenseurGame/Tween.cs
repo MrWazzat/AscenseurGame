@@ -13,6 +13,7 @@ namespace AscenseurGame
         public Vector2 begin;
         public Vector2 change;
         public float duration;
+        public EaseFunction function;
 
         public Tween(float t, Vector2 b, Vector2 c, float d)
         {
@@ -20,6 +21,7 @@ namespace AscenseurGame
             begin = b;
             change = c;
             duration = d;
+            function = EaseFunction.Linear;
         }
     }
 
