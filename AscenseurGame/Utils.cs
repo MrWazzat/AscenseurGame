@@ -16,7 +16,7 @@ namespace AscenseurGame
         public const float ETAGE_3 = 320;
         public const float ETAGE_4 = 480;
 
-        public const float POSITION_X_BUTTON = 200;
+        //public const float POSITION_X_BUTTON = 200;
 
 
         //DESSIN DE HITBOX

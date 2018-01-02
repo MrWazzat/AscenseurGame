@@ -59,21 +59,22 @@ namespace AscenseurGame
         {
             Employees = new List<Personnage>();
             Asc = new Ascenseur(new Vector2(30, Utils.ETAGE_1));
+            Couloir.X = Asc.Texture.Width + 30;
             Couloirs = new List<Couloir>()
             {
-                new Couloir(new Vector2(Asc.Texture.Width + 30, Utils.ETAGE_1), 1),
-                new Couloir(new Vector2(Asc.Texture.Width + 30, Utils.ETAGE_2), 2),
-                new Couloir(new Vector2(Asc.Texture.Width + 30, Utils.ETAGE_3), 3),
-                new Couloir(new Vector2(Asc.Texture.Width + 30, Utils.ETAGE_4), 4)
+                new Couloir(new Vector2(Couloir.X, Utils.ETAGE_1), 1),
+                new Couloir(new Vector2(Couloir.X, Utils.ETAGE_2), 2),
+                new Couloir(new Vector2(Couloir.X, Utils.ETAGE_3), 3),
+                new Couloir(new Vector2(Couloir.X, Utils.ETAGE_4), 4)
             };
 
 
             HUD = new List<Button>
             {
-                new Button(new Vector2(Utils.POSITION_X_BUTTON, Utils.ETAGE_1), "Etage 1"),
-                new Button(new Vector2(Utils.POSITION_X_BUTTON, Utils.ETAGE_2), "Etage 2"),
-                new Button(new Vector2(Utils.POSITION_X_BUTTON, Utils.ETAGE_3), "Etage 3"),
-                new Button(new Vector2(Utils.POSITION_X_BUTTON, Utils.ETAGE_4), "Etage 4")
+                new Button(new Vector2(Couloir.X, Utils.ETAGE_1), "1"),
+                new Button(new Vector2(Couloir.X, Utils.ETAGE_2), "2"),
+                new Button(new Vector2(Couloir.X, Utils.ETAGE_3), "3"),
+                new Button(new Vector2(Couloir.X, Utils.ETAGE_4), "4")
             };
 
             HUD[0].ZeEvent += () => { if (!Asc.InMove) { Console.WriteLine("Etage 1"); Asc.Move(Keys.Down, Utils.ETAGE_1, Asc.Vitesse); } };
@@ -86,9 +87,13 @@ namespace AscenseurGame
         public override void Update(float time)
         {
             TimerClients += time;
-            if(TimerClients > 2000)
+            if(TimerClients > 200)
             {
-                Couloirs[Main.Rand.Next(4)].AddClients(new Personnage(Vector2.Zero));
+                int numeroCouloir = Main.Rand.Next(4);
+
+                if (Couloirs[numeroCouloir].Clients.Count <= 16)
+                    Couloirs[numeroCouloir].AddClients(new Personnage(Vector2.Zero));
+
                 TimerClients = 0;
             }
             Asc.Update(time);

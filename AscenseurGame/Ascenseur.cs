@@ -17,7 +17,7 @@ namespace AscenseurGame
         {
             Clients = new List<Personnage>();
             Vitesse = 2500;
-            Tween.function = EaseFunction.EaseInOutQuint;
+            Tween.function = EaseFunction.EaseInOutCirc;
             InMove = false;
         }
 

@@ -19,7 +19,7 @@ namespace AscenseurGame
 
         public Button(Vector2 _position, string _text)
         {
-            Texture = Utils.CreateTexture(150, 50, Color.AliceBlue);
+            Texture = Utils.CreateTexture(45, 45, Color.Chartreuse);
             Position = _position;
             Hitbox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
             Text = _text;

@@ -7,6 +7,7 @@ namespace AscenseurGame
 {
     public class Couloir
     {
+        public static float X;
         public Texture2D Texture;
         public Vector2 Position;
         public int NumeroEtage;
@@ -26,7 +27,6 @@ namespace AscenseurGame
         {
             if (Input.KeyPressed(Keys.D, true))
                 AddClients(new Personnage(new Vector2(Position.X + (Texture.Width - Assets.Personnage.Width))));
-            //AddClients(new Personnage(new Vector2(300,300)));
 
             foreach (Personnage cl in Clients)
                 cl.Update(time);
@@ -55,10 +55,15 @@ namespace AscenseurGame
             if (Clients.Count == 0)
                 _perso.Move(Keys.Left, 200, 2500);
             else
-                _perso.Move(Keys.Left, 60 + Clients[Clients.Count - 1].TweenEnd.X, 2500);
+                _perso.Move(Keys.Left, 30 + Clients[Clients.Count - 1].TweenEnd.X, 2500);
             Clients.Add(_perso);
             
         }
+
+        //public static int GetIndex(Personnage _perso)
+        //{
+        //    return _perso.
+        //}
 
         public void Draw(SpriteBatch batch)
         {
