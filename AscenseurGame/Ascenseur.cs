@@ -1,12 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace AscenseurGame
 {
     public class Ascenseur : Sprite
     {
         public List<Personnage> Clients;
+        public int ActualEtage;
 
         public float Vitesse;
 
@@ -26,6 +28,18 @@ namespace AscenseurGame
             {
                 AddClient(new Personnage(new Vector2(-20, -20)));
             }
+
+            {
+                if (Position.Y >= Utils.ETAGE_1 && Position.Y < Utils.ETAGE_2)
+                    ActualEtage = 1;
+                else if (Position.Y >= Utils.ETAGE_2 && Position.Y < Utils.ETAGE_3)
+                    ActualEtage = 2;
+                else if (Position.Y >= Utils.ETAGE_3 && Position.Y < Utils.ETAGE_4)
+                    ActualEtage = 3;
+                else if (Position.Y ==  Utils.ETAGE_4)
+                    ActualEtage = 4;
+            }
+            //Console.WriteLine(ActualEtage);
         }
 
         public void AddClient(Personnage _perso)

@@ -46,6 +46,8 @@ namespace AscenseurGame
         public List<Personnage> Employees;
         public List<Couloir> Couloirs;
 
+        public float TimerClients;
+
 
         public GameScreen()
             : base()
@@ -83,6 +85,12 @@ namespace AscenseurGame
 
         public override void Update(float time)
         {
+            TimerClients += time;
+            if(TimerClients > 2000)
+            {
+                Couloirs[Main.Rand.Next(4)].AddClients(new Personnage(Vector2.Zero));
+                TimerClients = 0;
+            }
             Asc.Update(time);
             foreach (Couloir couloir in Couloirs)
             {
