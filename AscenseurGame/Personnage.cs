@@ -37,7 +37,6 @@ namespace AscenseurGame
 
         public override void Update(float time)
         {
-            //Console.WriteLine(InMove);
             base.Update(time);
             if (InMove)
             {
@@ -78,13 +77,14 @@ namespace AscenseurGame
         public void UpdatePosition()
         {
             int Index = EtageActuel.GetIndex(this);
+            Position.Y = EtageActuel.Position.Y + (Assets.Couloir.Height - Texture.Height);
             if (Index == 0)
             {
-                Move(Keys.Left, 200, 2500);
+                Move(Keys.Left, 200, 1500);
             }
             else
             {
-                Move(Keys.Left, 30 + EtageActuel.Clients[Index - 1].TweenEnd.X, 2500);
+                Move(Keys.Left, 30 + EtageActuel.Clients[Index - 1].TweenEnd.X, 1500);
             }
         }
 

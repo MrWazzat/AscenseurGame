@@ -41,7 +41,7 @@ namespace AscenseurGame
                             Clients.Remove(Clients[0]);
                             foreach (Personnage perso in Clients)
                             {
-                                perso.UpdatePosition();
+                                  perso.UpdatePosition();
                             }
                         }
                         TimerVidage = 0;
