@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+//YOU HAVE BEEN VISITED BY THE GOOD BOI PROPHET, MAY REST BE UPON YOU.
 namespace AscenseurGame
 {
     class Main
