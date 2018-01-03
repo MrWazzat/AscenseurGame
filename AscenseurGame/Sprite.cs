@@ -34,8 +34,10 @@ namespace AscenseurGame
             if (Tween.time < Tween.duration)
             {
                 Tween.time += time;
-                Position.X = Ease.Easing(Tween.time, Tween.begin.X, Tween.change.X, Tween.duration, Tween.function);
-                Position.Y = Ease.Easing(Tween.time, Tween.begin.Y, Tween.change.Y, Tween.duration, Tween.function);
+                if(Tween.change.X != Tween.begin.X)
+                    Position.X = Ease.Easing(Tween.time, Tween.begin.X, Tween.change.X, Tween.duration, Tween.function);
+                if (Tween.change.Y != Tween.begin.Y)
+                    Position.Y = Ease.Easing(Tween.time, Tween.begin.Y, Tween.change.Y, Tween.duration, Tween.function);
                 InMove = true;
             }
             else

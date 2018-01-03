@@ -41,10 +41,10 @@ namespace AscenseurGame
 
     public class GameScreen : Screen
     {
-        public Ascenseur Asc;
+        public static Ascenseur Asc;
         public List<Button> HUD;
         public List<Personnage> Employees;
-        public List<Couloir> Couloirs;
+        public static List<Couloir> Couloirs;
 
         public float TimerClients;
 
@@ -77,11 +77,20 @@ namespace AscenseurGame
                 new Button(new Vector2(Couloir.X, Utils.ETAGE_4), "4")
             };
 
-            HUD[0].ZeEvent += () => { if (!Asc.InMove) { Console.WriteLine("Etage 1"); Asc.Move(Keys.Down, Utils.ETAGE_1, Asc.Vitesse); } };
-            HUD[1].ZeEvent += () => { if (!Asc.InMove) { Console.WriteLine("Etage 2"); Asc.Move(Keys.Down, Utils.ETAGE_2, Asc.Vitesse); } };
-            HUD[2].ZeEvent += () => { if (!Asc.InMove) { Console.WriteLine("Etage 3"); Asc.Move(Keys.Down, Utils.ETAGE_3, Asc.Vitesse); } };
-            HUD[3].ZeEvent += () => { if (!Asc.InMove) { Console.WriteLine("Etage 4"); Asc.Move(Keys.Down, Utils.ETAGE_4, Asc.Vitesse); } };
+            HUD[0].ZeEvent += () => ButtonAscenseur(Utils.ETAGE_1);
+            HUD[1].ZeEvent += () => ButtonAscenseur(Utils.ETAGE_2);
+            HUD[2].ZeEvent += () => ButtonAscenseur(Utils.ETAGE_3);
+            HUD[3].ZeEvent += () => ButtonAscenseur(Utils.ETAGE_4);
 
+        }
+
+        public void ButtonAscenseur(float etage)
+        {
+            if (!Asc.InMove || !Asc.InCharge)
+            {
+                Couloirs[Asc.ActualEtage-1].Vidage = false;
+                Asc.Move(Keys.Down, etage, 2500);
+            }
         }
 
         public override void Update(float time)
@@ -92,7 +101,7 @@ namespace AscenseurGame
                 int numeroCouloir = Main.Rand.Next(4);
 
                 if (Couloirs[numeroCouloir].Clients.Count <= 16)
-                    Couloirs[numeroCouloir].AddClients(new Personnage(Vector2.Zero));
+                    Couloirs[numeroCouloir].AddClients(new Personnage(Vector2.Zero, Couloirs[numeroCouloir]));
 
                 TimerClients = 0;
             }

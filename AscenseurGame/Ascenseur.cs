@@ -8,7 +8,11 @@ namespace AscenseurGame
     public class Ascenseur : Sprite
     {
         public List<Personnage> Clients;
+        public List<Personnage> Attente;
         public int ActualEtage;
+        public bool InCharge;
+        public float TimerCharge;
+        public int CompteurClient, MaxClient;
 
         public float Vitesse;
 
@@ -17,17 +21,18 @@ namespace AscenseurGame
         {
             Clients = new List<Personnage>();
             Vitesse = 2500;
-            Tween.function = EaseFunction.EaseInOutCirc;
+            Tween.function = EaseFunction.EaseInOutQuint;
             InMove = false;
+            InCharge = false;
         }
 
         public override void Update(float time)
         {
             base.Update(time);
-            if (Input.Right(true))
-            {
-                AddClient(new Personnage(new Vector2(-20, -20)));
-            }
+            //if (Input.Right(true))
+            //{
+            //    AddClient(new Personnage(new Vector2(-20, -20)));
+            //}
 
             {
                 if (Position.Y >= Utils.ETAGE_1 && Position.Y < Utils.ETAGE_2)
@@ -39,7 +44,14 @@ namespace AscenseurGame
                 else if (Position.Y ==  Utils.ETAGE_4)
                     ActualEtage = 4;
             }
-            //Console.WriteLine(ActualEtage);
+
+            if (!InMove)
+            {
+                GameScreen.Couloirs[ActualEtage-1].Vidage = true;
+            }
+
+            //CHARGEMENT DES GENS
+            Console.WriteLine(InMove + " : " + InCharge + " : " + ActualEtage);
         }
 
         public void AddClient(Personnage _perso)

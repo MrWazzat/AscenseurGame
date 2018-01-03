@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 
@@ -8,17 +9,29 @@ namespace AscenseurGame
     public class Personnage : Sprite
     {
         public SpriteEffects Effect;
-        public int EtageVoulu;
-        public int EtageActuel;
+        public Couloir EtageActuel;
 
         public float TimerSaut;
         public bool AlreadyJumped;
-        
 
-        public Personnage(Vector2 _position) : base(Assets.Personnage, _position)
+
+        public Personnage(Vector2 _position, Couloir _couloir) : base(Assets.Personnage, _position)
         {
-            Texture = Main.Rand.Next(5) == 1 ? Assets.Patron : Assets.Personnage;
-            Console.WriteLine("Un de plus !");
+            int _texture = Main.Rand.Next(5);
+            EtageActuel = _couloir;
+            if (_texture == 0)
+            {
+                Texture = Assets.Patron;
+            }
+            else if(_texture == 1 || _texture == 2)
+            {
+                Texture = Assets.Personnage;
+            }
+            else if(_texture == 3 || _texture == 4)
+            {
+                Texture = Assets.Secretaire;
+            }
+
             AlreadyJumped = false;
         }
 
@@ -60,6 +73,19 @@ namespace AscenseurGame
 
 
 
+        }
+
+        public void UpdatePosition()
+        {
+            int Index = EtageActuel.GetIndex(this);
+            if (Index == 0)
+            {
+                Move(Keys.Left, 200, 2500);
+            }
+            else
+            {
+                Move(Keys.Left, 30 + EtageActuel.Clients[Index - 1].TweenEnd.X, 2500);
+            }
         }
 
         public void Draw(SpriteBatch batch, float y)
